@@ -173,7 +173,19 @@
     </header>
 
     <div id="main" role="main">
+      {% comment %}
+      If we are on the /collections page, we will list collections in the shop.
+      Unfortunately, Shopify does not let us use an actual template file for the /collections page.
+      {% endcomment %}
+      {% if template == 'list-collections' %}
+      {% include 'collection-listing' %}
+      {% else %}
+      {% comment %}
+      Else, we have a template file to render.
+      That's what content_for_layout is for.
+      {% endcomment %}
       {{ content_for_layout }}
+      {% endif %}
     </div>
 
     <footer>
