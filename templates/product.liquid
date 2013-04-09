@@ -7,21 +7,19 @@
     
     <div id="product-details">
       
-      <hgroup id="product-title">
-        <h1 itemprop="name">{{ product.title }}</h1>
-        {% assign product_vendor_handle = product.vendor | handle %}
-        {% comment %}
-        Do we have a collection that has the same name as our product vendor name?
-        If we do, let's have the vendor link point to it.
-        If not, we will point to the automatic vendor collection.
-        {% endcomment %}
-        {% if collections[product_vendor_handle].handle == product_vendor_handle %}
-          {% assign vendor_url = collections[product_vendor_handle].url %}
-        {% else %}
-          {% assign vendor_url = product.vendor | url_for_vendor %}
-        {% endif %}
-        <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
-      </hgroup>
+      <h1 itemprop="name">{{ product.title }}</h1>
+      {% assign product_vendor_handle = product.vendor | handle %}
+      {% comment %}
+      Do we have a collection that has the same name as our product vendor name?
+      If we do, let's have the vendor link point to it.
+      If not, we will point to the automatic vendor collection.
+      {% endcomment %}
+      {% if collections[product_vendor_handle].handle == product_vendor_handle %}
+        {% assign vendor_url = collections[product_vendor_handle].url %}
+      {% else %}
+        {% assign vendor_url = product.vendor | url_for_vendor %}
+      {% endif %}
+      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
       
       <div id="product-description" class="rte" itemprop="description">
         {{ product.description }}
