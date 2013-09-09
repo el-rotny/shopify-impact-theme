@@ -5,8 +5,8 @@
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->  
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8" />
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
 
   <title>
     {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
