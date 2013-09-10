@@ -39,6 +39,7 @@ Basic structure
 │   ├── page.liquid
 │   ├── product.liquid
 │   └── search.liquid
+│   └── list-collections.liquid
 ```
 
 Additional resources
