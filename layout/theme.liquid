@@ -105,11 +105,11 @@
       </a><!-- #logo -->
       {% endif %}
       {% if template == 'index' %}
-      <h1 id="site-title"{% if settings.use_logo %} class="hidden"{% else %} role="banner"{% endif %}>
+      <h1 id="site-title"{% if settings.use_logo %} class="hidden"{% endif %}>
         <a href="/">{{ shop.name }}</a>
       </h1>
       {% else %}
-      <a id="site-title" href="/" role="banner">{{ shop.name }}</a>
+      <a id="site-title" href="/"{% if settings.use_logo %} class="hidden"{% endif %}>{{ shop.name }}</a>
       {% endif %}
       
       {% comment %}
@@ -169,19 +169,11 @@
     </header>
 
     <div id="main" role="main">
-      {% comment %}
-      If we are on the /collections page, we will list collections in the shop.
-      Unfortunately, Shopify does not let us use an actual template file for the /collections page.
-      {% endcomment %}
-      {% if template == 'list-collections' %}
-      {% include 'collection-listing' %}
-      {% else %}
-      {% comment %}
-      Else, we have a template file to render.
+      {% comment %}}
+      We have a template file to render.
       That's what content_for_layout is for.
       {% endcomment %}
       {{ content_for_layout }}
-      {% endif %}
     </div>
 
     <footer>
