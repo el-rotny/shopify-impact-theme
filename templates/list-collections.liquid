@@ -1,1 +1,15 @@
 {% include 'collection-listing' %}
+
+{% comment %}
+{% raw %}
+<!-- Alternatively, if not using a snippet, use the code below. 
+To use the code below, get rid of the above 'include', and get rid of the comment and raw tags, and you're in business. -->
+<ul>
+{% for collection in collections %}
+  {% unless collection.handle == 'all' or collection.handle == 'frontpage' %}
+  {% include 'collection-grid-item' with 'three-per-row' %}
+  {% endunless %}
+{% endfor %}
+</ul>
+{% endraw %}
+{% endcomment %}
