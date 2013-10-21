@@ -27,17 +27,23 @@ See 'How do I create subcategories of products?' at
 http://support.shopify.com/customer/portal/articles/75425 for details.
 {% endcomment %}
 {% if collection.all_tags.size > 0 %}
+{% comment %}
+Alas, the collection title is escaped, while vendor and type aren't,
+so in comparisons we need to escape type and vendor.
+{% endcomment %}
+{% assign type_escaped = collection.products.first.type | escape %}
+{% assign vendor_escaped = collection.products.first.vendor | escape %}
 <ul class="collection-sub-categories clearfix">
   <li{% unless current_tags %} class="active"{% endunless %}>
     {% if collection.handle %}
     {% comment %}Good for /collections/all collection and regular collections{% endcomment %}
     <a href="/collections/{{ collection.handle }}">All</a>
     {% comment %}Good for automatic type collections{% endcomment %}
-    {% elsif collection.products.first.type == collection.title %}
-    <a href="{{ collection.title | url_for_type }}">All</a>
+    {% elsif type_escaped == collection.title %}
+    <a href="{{ collection.products.first.type | url_for_type }}">All</a>
     {% comment %}Good for automatic vendor collections{% endcomment %}
-    {% elsif collection.products.first.vendor == collection.title %}
-    <a href="{{ collection.title | url_for_vendor }}">All</a>
+    {% elsif vendor_escaped == collection.title %}
+    <a href="{{ collection.products.first.vendor | url_for_vendor }}">All</a>
     {% endif %}
   </li> 
   {% for tag in collection.all_tags %}
