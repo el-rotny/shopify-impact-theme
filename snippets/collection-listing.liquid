@@ -16,19 +16,26 @@ Merchants often create an 'all' collection to control their Catalog page at /col
 
 <h1>{% if using_link_list %}{{ linklists[collection-listing].title }}{% else %}Collections{% endif %}</h1>
 
-<ul class="grid clearfix">
 {% if using_link_list %}
+<ul class="grid clearfix">
 {% for link in linklists[collection-listing].links %}
   {% if link.type == 'collection_link' %}
   {% assign collection = link.object %}
   {% include 'collection-grid-item' with 'three-per-row' %}
   {% endif %}
 {% endfor %}
-{% else %}
-{% for collection in collections %}
-  {% unless collection.handle == 'all' or collection.handle == 'frontpage' %}
-  {% include 'collection-grid-item' with 'three-per-row' %}
-  {% endunless %}
-{% endfor %}
-{% endif %}
 </ul>
+{% else %}
+{% paginate collections by 6 %}
+<ul class="grid clearfix">
+{% for collection in collections %}
+  {% include 'collection-grid-item' with 'three-per-row' %}
+{% endfor %}
+</ul>
+{% if paginate.pages > 1 %}
+<div id="pagination">
+  {{ paginate | default_pagination }}
+</div>
+{% endif %}
+{% endpaginate %}
+{% endif %}
