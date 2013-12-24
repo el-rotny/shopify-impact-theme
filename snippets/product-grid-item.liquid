@@ -39,6 +39,11 @@ Here, for the sake of teaching, we will use 2 presentation options:
         <s class="compare-at-price">{{ product.compare_at_price | money }}</s>
         {% endif %}
       </span>
+      {% comment %}
+      All themes by Shopify should support the Grapevine Reviews app out of the box.
+      https://apps.shopify.com/grapevine-reviews
+      {% endcomment %}
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
   </div><!-- .prod-caption -->
   
 </li>

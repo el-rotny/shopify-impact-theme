@@ -25,6 +25,12 @@
         {{ product.description }}
       </div>
       
+      {% comment %}
+      All themes by Shopify should support the Grapevine Reviews app out of the box.
+      https://apps.shopify.com/grapevine-reviews
+      {% endcomment %} 
+      <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+      
       <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
         {% if product.available %}
