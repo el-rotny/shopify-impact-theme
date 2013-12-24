@@ -28,6 +28,8 @@
   <meta property="og:type" content="website" />
 {% endif %}
 
-<meta property="og:description" content="{{ page_description | escape }}" />
+{% if page_description %}
+<meta property="og:description" content="{{ page_description }}" />
+{% endif %}
 <meta property="og:url" content="{{ canonical_url }}" />
 <meta property="og:site_name" content="{{ shop.name }}" />
