@@ -3,7 +3,7 @@ It may be a good idea to provide a theme setting that lets a merchant decide how
 on collection pages. Or, it may be a good idea to provide a control on the store front which lets a shopper decide 
 whether items be presented in a grid or in a list.
 That information about the presentation can be passed on to the product-grid-item.liquid snippet via the 'with' argument.
-Use of the 'with' argument is explained here: http://wiki.shopify.com/Include_(Liquid_tag).
+Use of the 'with' argument is explained here: http://docs.shopify.com/themes/theme-templates/snippets.
 The information can then be referred to by accessing the variable which goes by the same name as the snippet,
 in this case product-grid-item. If the 'with' argument is not used, the snippet variable is set to an empty string.
 Here, for the sake of teaching, we will use 2 presentation options:
@@ -49,7 +49,7 @@ floated elements. The code that follows just just shows you how to use a cycle e
 Notice that we named it ( 'clear' ). We need to name it because there's another cycle
 element in this file ( we called that other one 'last' ). If you have more than one
 cycle element in a rendered view, you'll need to name all of them.
-The cycle element is documented here: http://wiki.shopify.com/UsingLiquid#Cycle
+The cycle element is documented here: http://docs.shopify.com/themes/liquid-basics/logic#cycle
 {% endcomment %}
 
 {% if product-grid-item == 'four-per-row' %}

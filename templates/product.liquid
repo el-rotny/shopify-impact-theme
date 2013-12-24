@@ -115,46 +115,52 @@
 
 </div>
 
-<script>
-jQuery(function($) {
-  
-  var selectCallback = function(variant, selector) {
+{% comment %}
+Adding support for product options. See here for details: http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options
+{% endcomment %}
 
-    if (variant) {
-      
-      if (variant.available) {
-        
-        // Selected a valid variant that is available.
-        $('#add').removeClass('disabled').removeAttr('disabled').val('Add to Cart').fadeTo(200,1);
-      
-        // If item is backordered yet can still be ordered, we'll show special message.
-        if (variant.inventory_management && variant.inventory_quantity <= 0) {
-          $('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
-          $('#backorder').removeClass("hidden");
-        } else {
-          $('#backorder').addClass("hidden");
-        }
-        
+<script>
+  
+var selectCallback = function(variant, selector) {
+
+  if (variant) {
+    
+    // Selected a valid variant that is available.
+    if (variant.available) {
+          
+      // Enabling add to cart button.
+      jQuery('#add').removeClass('disabled').removeAttr('disabled').val('Add to Cart').fadeTo(200,1);
+    
+      // If item is backordered yet can still be ordered, we'll show special message.
+      if (variant.inventory_management && variant.inventory_quantity <= 0) {
+        jQuery('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
+        jQuery('#backorder').removeClass("hidden");
       } else {
-        // Variant is sold out.
-        $('#backorder').addClass('hidden');
-        $('#add').val('Sold Out').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);        
+        jQuery('#backorder').addClass("hidden");
       }
       
-      // Whether the variant is in stock or not, we can update the price and compare at price.
-      if ( variant.compare_at_price > variant.price ) {
-        $('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
-      } else {
-        $('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
-      }        
-
     } else {
-      // variant doesn't exist.
-      $('#backorder').addClass('hidden');
-      $('#add').val('Unavailable').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
+      // Variant is sold out.
+      jQuery('#backorder').addClass('hidden');
+      jQuery('#add').val('Sold Out').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);        
     }
+    
+    // Whether the variant is in stock or not, we can update the price and compare at price.
+    if ( variant.compare_at_price > variant.price ) {
+      jQuery('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
+    } else {
+      jQuery('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
+    }        
 
-  };
+  } else {
+    // variant doesn't exist.
+    jQuery('#backorder').addClass('hidden');
+    jQuery('#add').val('Unavailable').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
+  }
+
+};
+  
+jQuery(function($) {
 
   new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback });
   
