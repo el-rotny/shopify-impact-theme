@@ -40,11 +40,6 @@
           <h2>
             <a href="{{ item.product.url | within: collections.all }}">
             {{ item.title }}
-            {% if item.product.variants.size == 1 %}
-              {% unless item.variant.title contains 'Default' %}
-               - {{ item.variant.title }}
-              {% endunless %}
-            {% endif %}
             </a>
           </h2>
           {% comment %}
