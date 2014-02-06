@@ -24,8 +24,8 @@ Foundation now uses bower to install the foundation dependancies. To keep depend
 
 Install the CLI
     
-    gem install foundation
-    foundation version #=> should say v1.0.3 or higher
+    $ gem install foundation
+    $ foundation version #=> should say v1.0.3 or higher
 
 In the root of your Compass project create a file called bower.json with this content:
 
