@@ -36,21 +36,21 @@ In the root of your Compass project create a file called bower.json with this co
       }
     }
 
-When making changes, your SCSS files will be automatically compiled to CSS. 
+In command line cd to your project root (not your theme root) & run 
+    
+    $ bower install
+
 
 Run compass to compile locally
 ---------------------
 
-In command line, cd to your projecy root and run
+When making changes, your SCSS files will be automatically compiled to CSS. 
+
+In command line, cd to your theme directory and run
     
     compass watch
 
 Thats it!. 
-
-Notes:
-In command line cd to your project root (not your theme root) & run 
-    
-    $ bower install
 
 The top of our config.rb file already has the correct import path
 
