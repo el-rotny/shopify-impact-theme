@@ -16,22 +16,22 @@ This project uses compass and imports Foundation 5 to help bootstrap grids and b
 
 We will first want to make sure compass is installed.
 In command line run 
-			gem install compass
+        gem install compass
 
 Foundation now uses bower to install the foundation dependancies. To keep dependacies outside of the shopify theme directory, make sure your theme directory is contained in a empty dir which will be your root. 
 
 Install the CLI
-			gem install foundation
-			foundation version #=> should say v1.0.3 or higher
+    gem install foundation
+    foundation version #=> should say v1.0.3 or higher
 
 In the root of your Compass project create a file called bower.json with this content:
 
-		{
-		  "name": "PROJECT_NAME",
-		  "dependencies": {
-		    "foundation": "~5.1.0"
-		  }
-		}
+    {
+      "name": "PROJECT_NAME",
+      "dependencies": {
+        "foundation": "~5.1.0"
+      }
+    }
 
 When making changes, your SCSS files will be automatically compiled to CSS. 
 
@@ -39,17 +39,17 @@ Run compass to compile locally
 ---------------------
 
 In command line, cd to your projecy root and run
-			compass watch
+    compass watch
 
 Thats it!. 
 
 Notes:
 In command line cd to your project root (not your theme root) & run 
-			bower install.
+    bower install.
 
 Our config.rb file already has the correct  import path
 
-			add_import_path "../bower_components/foundation/scss"
+    add_import_path "../bower_components/foundation/scss"
 
 We placed a minified version of the foundation js files within the theme assets directory so you dont have to worry about the rest of the dependances.
 
