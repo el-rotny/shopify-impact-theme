@@ -26,7 +26,16 @@
 
   {{ 'style.css' | asset_url | stylesheet_tag }}
   {{ 'app.css' | asset_url | stylesheet_tag }}
-  {{ 'impact.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {% if settings.google_header_font != "none" %}
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family={{ settings.google_header_font }}:300,400,700">
+  {% endif %}
+  {% if settings.google_nav_font != "none" %}
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family={{ settings.google_nav_font }}:300,400,700">
+  {% endif %}
+  {{ 'modernizr.js' | asset_url | script_tag }}
+
 
   <!--[if lt IE 9]>
   {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
