@@ -15,12 +15,15 @@ SCSS & Foundation
 This project uses compass and imports Foundation 5 to help bootstrap grids and basic elements. Other SCSS files will be dependant on having the foundation varaibles available to them. At the same time, we want to have control of what actually gets compiled and SCSS with compass is a great way to do this. 
 
 We will first want to make sure compass is installed.
+
 In command line run 
+    
     gem install compass
 
 Foundation now uses bower to install the foundation dependancies. To keep dependacies outside of the shopify theme directory, make sure your theme directory is contained in a empty dir which will be your root. 
 
 Install the CLI
+    
     gem install foundation
     foundation version #=> should say v1.0.3 or higher
 
@@ -39,12 +42,14 @@ Run compass to compile locally
 ---------------------
 
 In command line, cd to your projecy root and run
+    
     compass watch
 
 Thats it!. 
 
 Notes:
 In command line cd to your project root (not your theme root) & run 
+    
     $ bower install
 
 The top of our config.rb file already has the correct import path
