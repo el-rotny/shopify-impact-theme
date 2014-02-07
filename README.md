@@ -75,7 +75,7 @@ When making changes, your SCSS files will be automatically compiled to css.liqui
 In command line, cd to your theme directory and run
    
 ``` 
-compass watch
+$ compass watch
 ```
 
 Thats it!. 
