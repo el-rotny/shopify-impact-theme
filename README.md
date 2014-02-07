@@ -23,7 +23,8 @@ Or you can use interpolations to output plain CSS as-is. For example
         background: url( #{'{{ settings.some_setting }}' )
     }
 
-assets/_base.scss contains our config setting variables for the shopify admin section and we set the regular foundation variables in assets/_settings.scss  and set them to end with !default, which allows us to overide these with our own. 
+"assets/_base.scss" contains our config setting variables for the shopify admin section and we set the regular foundation variables in "assets/_settings.scss"  and set them to end with !default, which allows us to overide these with our own. 
+
 http://sass-lang.com/documentation/file.SASS_REFERENCE.html#variable_defaults_
 
 Installation
