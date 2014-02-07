@@ -1,0 +1,65 @@
+/* 
+file: _base.scss
+type: partial
+by: DesignCollective.io
+https://github.com/sugarskull/shopify-impact-theme
+*/
+
+// *** NOTE: For Settings (Thanks to http://experts.shopify.com/graphika )
+// One catch I ran into was allowing {{ settings.some_setting }} to compile by libsass without 
+// having errors b/c obviously {{ settings.some_setting }} isn't valid CSS. So there's a little
+// trick called unquote("") you can use: 
+// $theme-setting-variable-that-propagates-throughout-my-css:unquote("{{ settings.some_setting }}");
+// Or // 
+// #{'{{ settings.some_setting }}'
+
+//////////////////////////////////////////////////
+// ** THEME SETTINGS FOR SHOPIFY CONFIG **
+// Use this file as the base for overiding Foundation Variables
+
+$body-bg: #fff;
+$body-font-color: #222;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-weight: normal;
+$body-font-style: normal;
+
+// Default colors throughout
+$primary-color: #008CBA;
+$secondary-color: #e7e7e7;
+$alert-color: #f04124;
+$success-color: #43AC6A;
+$warning-color: #f08a24;
+$info-color: #a0d3e8;
+
+$topbar-menu-link-color: #fff;
+$topbar-menu-icon-color: #fff;
+$topbar-dropdown-label-color: #777;
+$topbar-link-bg-hover: #272727  ;
+$topbar-link-color: #fff;
+$topbar-link-color-hover: #fff;
+$topbar-link-color-active: #fff;
+$topbar-link-color-active-hover: #fff;
+$topbar-bg-color: #333;
+
+// Control header font styles
+$header-font-family: $body-font-family;
+$header-font-weight: 300;
+$header-font-style: normal;
+$header-font-color: #222;
+$header-line-height: 1.4;
+$header-top-margin: .2rem;
+$header-bottom-margin: .5rem;
+$header-text-rendering: optimizeLegibility;
+
+// Control the description styles
+$price-bg: #fff;
+$price-desc-color: #777;
+
+// We use these to control the CTA area styles
+$price-cta-bg: #fff;
+
+// We use this to se the prog bar height
+$progress-bar-color: #f6f6f6  ;
+
+$progress-bar-border-color: scale-color(#fff, $lightness: -20%);
+$progress-bar-border-size: 1px;

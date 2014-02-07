@@ -1,0 +1,174 @@
+/* Cam's Foundation Extras */
+
+	/* Some things need to be hidden sometimes */
+	.hidden {
+ 		display: none;
+	}
+
+	/* Some things need aligning */
+	.align-right {
+		text-align: right;
+	}
+
+	/* Why the hell do lists still put their style outside the div? */
+	ol, ul {
+		list-style-position: inside;
+  		margin-left:0;
+	}
+	
+	/* Product Loop - Change the breakpoint of product grids to suit */
+	@media only screen and (min-width: 620px) {
+		.product-preview.large-4 {
+			position: relative;
+			width: 33.33333%;
+			}
+	}
+
+	/* Foundation reveal reveals some problems due to it's necessitating that the modal window should be coded in the footer. Oobviously this isn't practical in this case */
+	.reveal-modal {
+        position:fixed !important;
+        overflow:scroll !important;
+        top:10% !important;
+        max-height:80%;
+	}
+
+/* Foundation Icon Fonts */
+	@font-face {
+		font-family: "foundation-icons";
+		src: url( {{'foundation-icons.eot' | asset_url }});
+		src: url( {{'foundation-icons.eot?#iefix' | asset_url }}) format("embedded-opentype"),
+		   url( {{'foundation-icons.woff' | asset_url }}) format("woff"),
+		   url( {{'foundation-icons.ttf' | asset_url }}) format("truetype"),
+		   url( {{'foundation-icons.svg#fontcustom' | asset_url }}) format("svg");
+	}
+	.white {
+		color: white !important;
+	}
+
+/* Contact Form */
+textarea {
+	min-height: 100px;
+}
+
+/* Top Bar Form Height Fix */
+.top-bar input[type="text"], .top-bar .button {
+	height: 1.9rem;
+}
+
+/* Recent Blog Snippet */
+ul.recent-blog {
+	list-style-type: none;
+}
+
+/* Below here are CSS elements that are just here for fun c/o Cam Gould */
+
+/* On Sale Feature */
+.sale-price {
+	color: rgba(255, 71, 65, 1.000);
+	font-weight: 800;
+}
+.sale-tag {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 50px 50px 0 0;
+	border-color: rgba(255, 71, 65, 1.000) transparent transparent transparent;
+}
+.sale-tag:after {
+	content: "Sale";
+	line-height:100%;
+	position: absolute;
+	top: -40px;
+	left: 2px;
+	color: rgba(255, 255, 255, 1.000);
+	font-size: 0.9em;
+	font-weight: 800;
+	transform: rotate(-45deg);
+	/* Safari */ -webkit-transform: rotate(-45deg);
+	/* Firefox */ -moz-transform: rotate(-45deg);
+	/* IE */ -ms-transform: rotate(-45deg);
+	/* Opera */ -o-transform: rotate(-45deg);
+	/* Internet Explorer */ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3.5);
+}
+/* Sale tag using Foundation Icon Font */
+.sale-tag-icon {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 32px 47px 0 0;
+	border-color: rgba(255, 255, 255, 1.000) transparent transparent transparent;
+}
+.sale-tag-icon:after {
+	position: absolute;
+	top: -54px;
+	left: 3px;
+	content: "";
+	font-family: "foundation-icons";
+	font-size: 3.8em;
+	color: rgba(255, 71, 65, 1.000);
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 1.000);
+}
+
+/* Blog Read More Link */
+.read-more {
+	text-align: right;
+}
+
+/* Cam's Custom Tiny Tags */
+.tag {
+	padding: 0 9px 0 8px;
+	background: rgba(43, 166, 203, 1.000);
+	text-decoration: none;
+	-moz-border-radius-bottomright: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-webkit-border-top-right-radius: 2px;
+	border-top-right-radius: 2px;
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	position: relative;
+	font-size: 13px;
+	color: rgba(255, 255, 255, 1.000);
+	margin: 10px 5px 4px 10px;
+	list-style-type: none;
+}
+.tag a, .tag a:hover, .tag a:visited {
+	color: rgba(255, 255, 255, 1.000);
+}
+.tag:before {
+	content: "";
+	float: left;
+	position: absolute;
+	top: 0;
+	left: -10px;
+	width: 0;
+	height: 1px;
+	border-color: transparent rgba(43, 166, 203, 1.000) transparent transparent;
+	border-style: solid;
+	border-width: 10px 10px 10px 0;
+	-moz-border-radius-topleft: 2px;
+	-webkit-border-top-left-radius: 2px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+}
+.tag:after {
+	content: "";
+	position: absolute;
+	top: 8px;
+	left: -2px;
+	float: left;
+	width: 4px;
+	height: 4px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: rgba(255, 255, 255, 1.000);
+}

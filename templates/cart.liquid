@@ -1,118 +1,145 @@
-<h1>Shopping Cart</h1>
+<div class="large-12 columns">
+
+	<h1>Shopping Cart</h1>
   
-{% if cart.item_count > 0 %}
+	{% if cart.item_count > 0 %}
 
-<form action="/cart" method="post">
+	<form action="/cart" method="post">
+
+
+		<div class="row">
+			<div class="small-8 columns">
+				<h5>Item</h5>
+			</div>
+			<div class="small-4 columns">
+				<h5>Subtotal</h5>
+			</div>
+		</div>
+		<hr>
+
+		{% for item in cart.items %}    
+
+		  {% comment %}
+			Determine the handle of the collection that was last seen for the 'continue shopping' link
+		  {% endcomment %}
   
-  <table>
-    
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>&nbsp;</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    
-    <tbody>
+		  {% if forloop.first %}
+			{% assign collection_url = item.product.collections.first.url %}
+			{% if collection_url == '/collections/frontpage' or collection_url == '' %}{% assign collection_url = '/collections/all' %}{% endif %}
+		  {% endif %}
 
-    {% for item in cart.items %}    
-    
-      {% comment %}
-      Determining the handle of the collection that was last seen for the 'continue shopping' link.
-      {% endcomment %}
-      
-      {% if forloop.first %}
-        {% assign collection_url = item.product.collections.first.url %}
-        {% if collection_url == '/collections/frontpage' or collection_url == '' %}{% assign collection_url = '/collections/all' %}{% endif %}
-      {% endif %}
+		<div class="row">
+			<div class="small-8 columns">
+				<div class="row">
+					<div class="large-3 columns">
+							<a href="{{ item.product.url | within: collections.all }}">  
+								<img src="{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
+							</a>
+					</div>
+					<div class="large-9 columns">
+						<div class="row">
+							<div class="large-12 columns">
+								  <h3>
+									<a href="{{ item.product.url | within: collections.all }}">
+									{{ item.title }}
+									{% if item.product.variants.size == 1 %}
+									  {% unless item.variant.title contains 'Default' %}
+									   - {{ item.variant.title }}
+									  {% endunless %}
+									{% endif %}
+									<span> - {{ item.price | money }}<span>
+									</a>
+								  </h3>
+								  {% comment %}
+								  Line Item Properties
+								  {% endcomment %}
+								  {% if item.properties.size > 0 %}
+								  <p>
+									{% for p in item.properties %}
+									  {% unless p.last == blank %}
+										{{ p.first }}:
+										{% if p.last contains '/uploads/' %}
+										  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+										{% else %}
+										  {{ p.last }}
+										{% endif %}
+										<br />
+									  {% endunless %}
+									{% endfor %}
+								  </p>
+								  {% endif %}
+								  <div class="row">
+										<div class="large-12 columns">
+											<h5>{{ item.vendor }}</h3>
+										</div>
+								  </div>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+			<div class="small-4 columns">
+				<div class="row">
+					<div class="large-6 columns">
+						<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+					</div>
+					<div class="large-6 columns">
+						<span class="price">{{ item.line_price | money }}</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		{% endfor %}
 
-      <tr>
-        <td>
-          <a href="{{ item.product.url | within: collections.all }}">  
-            <img src="{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
-          </a>
-        </td>
-        <td>
-          <h2>
-            <a href="{{ item.product.url | within: collections.all }}">
-            {{ item.title }}
-            </a>
-          </h2>
-          {% comment %}
-          Line Item Properties
-          {% endcomment %}
-          {% if item.properties.size > 0 %}
-          <p>
-            {% for p in item.properties %}
-              {% unless p.last == blank %}
-                {{ p.first }}:
-                {% if p.last contains '/uploads/' %}
-                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                {% else %}
-                  {{ p.last }}
-                {% endif %}
-                <br />
-              {% endunless %}
-            {% endfor %}
-          </p>
-          {% endif %}
-          <h3>{{ item.vendor }}</h3>
-        </td>
-        <td>{{ item.price | money }}</td>
-        <td>
-          <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
-        </td>
-        <td>{{ item.line_price | money }}</td>
-        <td>
-          <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
-        </td>
-      </tr>
-    {% endfor %}
-    
-    </tbody>
-    
-  </table>
   
-  {% comment %}
-  For the checkout and update buttons to work, they need to use
-  a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
-  {% endcomment %}
+	  {% comment %}
+	  	 For the checkout and update buttons to work, they need to have the name attribute set to 'checkout' and 'update', respectively (case-sensitive)
+	  {% endcomment %}
   
-  <div>
-    <h3>Subtotal <em>{{ cart.total_price | money }}</em></h3>
-    <a href="{{ collection_url }}">Continue shopping</a>
-    <span class="or">or</span>
-    <input type="submit" name="update" value="Update cart" />
-    <span class="or">or</span>
-    <input type="submit" name="checkout" value="Check out" />    
-    {% comment %}Paypal and Google checkout buttons{% endcomment %}
-    {% if additional_checkout_buttons %}
-    <p class="additional-checkout-buttons">
-      {{ content_for_additional_checkout_buttons }}
-    </p>
-    {% endif %}    
-  </div>
-  
-  {% comment %}
-  For the special instructions to be submitted with order,
-  they need to use a name attribute set to 'note'. That's case-sensitive.
-  {% endcomment %}
-  <div>
-    <p>Special instructions for seller</p>
-    <textarea name="note">{{ cart.note }}</textarea>
-  </div>
+		<div class="row">
+			<div class="large-6 columns">
+				<a href="{{ collection_url }}">Continue shopping</a>
+			</div>
+			<div class="large-6 columns align-right">
+				<h4>Subtotal <em>{{ cart.total_price | money }}</em></h4>
+				<input class="button" type="submit" name="update" value="Update cart" />
+				<span class="or">&nbsp;</span>
+				<input class="button" type="submit" name="checkout" value="Check out" />    
+				{% comment %}Paypal and Google checkout buttons{% endcomment %}
+				{% if additional_checkout_buttons %}
+				<p class="additional-checkout-buttons">
+				  {{ content_for_additional_checkout_buttons }}
+				</p>
+				{% endif %}    
+			</div>
+		</div>
 
-</form>
+		<div class="row">
+			<div class="large-6 columns">
+				{% comment %}
+				For the special instructions to be submitted with order,
+				they need to use a name attribute set to 'note'. That's case-sensitive.
+				{% endcomment %}
+				<p>Comments</p>
+				<textarea name="note">{{ cart.note }}</textarea>
+			</div>
+		</div>
 
-{% else %}
+	</form>
 
-<div>
-  <h2>It appears that your cart is currently empty!</h2>
-  <h3>You can continue browsing <a href="/collections/all">here</a>.</h3>
+	{% else %}
+
+	<div>
+	  <h2>It appears that your cart is currently empty!</h2>
+	  <h3>You can continue browsing <a href="/collections/all">here</a>.</h3>
+	</div>
+
+	{% endif %}
+	
 </div>
-
-{% endif %}
