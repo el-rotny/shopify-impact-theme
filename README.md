@@ -5,28 +5,26 @@ https://github.com/Cam/Shopify-Foundation-Theme
 
 Live Demo: http://impact-theme.myshopify.com/
 
-Requirements
----------------------
-Foundation 5
 
 SCSS & Foundation
 ---------------------
-This project uses compass to compile locally and imports Foundation 5. The SCSS files are converted to scss.liquid files. We use a manifest to import all partials to one main file. 
+This project uses compass to compile locally and imports Foundation 5 from outside the root of the theme file. 
 
-*** NOTE: For Settings (Thanks to http://experts.shopify.com/graphika )
-To compile {{ settings.some_setting }} through compass without 
+We leverage a custom ruby module to convert SCSS files to scss.liquid files. We also use a manifest to import all partials to one main file while keeping base variables available, propagating effectively, including shopify settings config varaibles.
+
+** To compile {{ settings.some_setting }} through compass without 
 having errors you can use a trick called unquote(""): 
 
     $theme-setting-variable-that-propagates-throughout-my-css:unquote("{{ settings.some_setting }}");
 
-Or in SASS you can use interpolations to output plain CSS as-is. For example
+Or you can use interpolations to output plain CSS as-is. For example
 
     .test {
         background: url( #{'{{ settings.some_setting }}' )
     }
 
-
-base.scss contains our config setting variables for the shopify admin section and we set the regular setting variables from foundation as !default, which allows us to overide these easily. 
+assets/_base.scss contains our config setting variables for the shopify admin section and we set the regular foundation variables in assets/_settings.scss  and set them to end with !default, which allows us to overide these with our own. 
+http://sass-lang.com/documentation/file.SASS_REFERENCE.html#variable_defaults_
 
 Installation
 ---------------------
