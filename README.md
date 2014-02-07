@@ -15,13 +15,17 @@ We leverage a custom ruby module to convert SCSS files to scss.liquid files. We 
 ** To compile {{ settings.some_setting }} through compass without 
 having errors you can use a trick called unquote(""): 
 
-    $theme-setting-variable-that-propagates-throughout-my-css:unquote("{{ settings.some_setting }}");
+```
+$theme-setting-variable-that-propagates-throughout-my-css:unquote("{{ settings.some_setting }}");
+```
 
 Or you can use interpolations to output plain CSS as-is. For example
 
-    .test {
-        background: url( #{'{{ settings.some_setting }}' )
-    }
+```
+.test {
+    background: url( #{'{{ settings.some_setting }}' )
+}
+```
 
 `assets/_base.scss` contains our config setting variables for the shopify admin section and we set the regular foundation variables in `assets/_settings.scss`  and set them to end with !default, which allows us to overide these with our own. 
 
@@ -36,8 +40,7 @@ We will first want to make sure compass is installed.
 In command line run 
 
 ```  
-    gem install compass
-
+gem install compass
 ```
 
 Foundation now uses bower to install the foundation dependancies. To keep dependacies outside of the shopify theme directory, make sure your theme directory is in na empty dir which will use as the "Project Root". 
@@ -45,25 +48,23 @@ Foundation now uses bower to install the foundation dependancies. To keep depend
 Install the CLI
 
 ```
-    $ gem install foundation
-    $ foundation version #=> should say v1.0.3 or higher
-
+$ gem install foundation
+$ foundation version #=> should say v1.0.3 or higher
 ```
 In the "Project Root" create a file called bower.json with this content:
 
 ```
-    {
-      "name": "PROJECT_NAME",
-      "dependencies": {
-        "foundation": "~5.1.0"
-      }
-    }
+{
+  "name": "PROJECT_NAME",
+  "dependencies": {
+    "foundation": "~5.1.0"
+  }
+}
 ```
 In command line cd to your project root (not your theme root) & run 
 
 ```   
-    $ bower install
-
+$ bower install
 ```
 
 Run compass to compile locally
@@ -74,8 +75,7 @@ When making changes, your SCSS files will be automatically compiled to css.liqui
 In command line, cd to your theme directory and run
    
 ``` 
-    compass watch
-
+compass watch
 ```
 
 Thats it!. 
@@ -83,8 +83,7 @@ Thats it!.
 The top of our config.rb file already has the correct import path
 
 ```
-    add_import_path "../bower_components/foundation/scss"
-
+add_import_path "../bower_components/foundation/scss"
 ```
 
 If you have have been using Foundation 4 in the past, see http://foundation.zurb.com/docs/upgrading.html for documented changes.
