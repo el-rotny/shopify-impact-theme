@@ -43,7 +43,7 @@ In command line run
 $ gem install compass
 ```
 
-Foundation now uses bower to install the foundation dependancies. To keep dependacies outside of the shopify theme directory, make sure your theme directory is in na empty dir which will use as the "Project Root". 
+Foundation now uses bower to install the foundation dependancies. To keep Foundation dependancies outside of the shopify theme directory, we need to put the theme dir in empty dir which we will call the  "Project Root". 
 
 Install the CLI
 
