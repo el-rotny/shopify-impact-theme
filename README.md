@@ -51,7 +51,7 @@ Install the CLI
 $ gem install foundation
 $ foundation version #=> should say v1.0.3 or higher
 ```
-In the "Project Root" create a file called bower.json with this content:
+In the "Project Root" create a file called bower.json with this content (you can extend this if needed):
 
 ```
 {
