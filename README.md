@@ -3,6 +3,8 @@ Shopify + Compass + Foundation 5
 Template Credit: Shopify-Foundation-Theme
 https://github.com/Cam/Shopify-Foundation-Theme
 
+Live Demo: http://impact-theme.myshopify.com/
+
 Requirements
 ---------------------
 Foundation 5
